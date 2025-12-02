@@ -21,6 +21,9 @@ COPY . .
 # Collect static files
 RUN python manage.py collectstatic --noinput || true
 
+# Run migrations
+RUN python manage.py migrate
+
 
 # Run gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:3000", "--workers", "2", "--timeout", "300", "config.wsgi:application"]
