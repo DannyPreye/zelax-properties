@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for zelax-properties on 2025-12-02T11:10:41Z
+# fly.toml app configuration file generated for zelax-properties-23443 on 2025-12-02T16:30:16Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'zelax-properties'
+app = 'zelax-properties-23443'
 console_command = '/code/manage.py shell'
 primary_region = 'jnb'
 
@@ -17,7 +17,7 @@ PORT = '8000'
 
 [processes]
 app = 'gunicorn --bind :8000 --workers 2 config.wsgi'
-# celery = 'celery -A config worker --loglevel=INFO'
+celery = 'celery -A config worker --loglevel=INFO'
 
 [http_service]
 auto_start_machines = true
