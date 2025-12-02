@@ -219,6 +219,14 @@ if ALLOWED_HOSTS_ENV:
 else:
     ALLOWED_HOSTS = []
 
+# Add Fly.dev hosts to ALLOWED_HOSTS
+FLY_HOSTS = [
+    "zelax-properties.fly.dev",
+    "zelax-properties-23443.fly.dev",
+]
+ALLOWED_HOSTS.extend(FLY_HOSTS)
+ALLOWED_HOSTS = list(set(ALLOWED_HOSTS))  # Remove duplicates
+
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
