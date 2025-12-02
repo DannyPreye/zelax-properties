@@ -33,8 +33,6 @@ SECRET_KEY = "django-insecure-1=x6ic)ha*=j97o78p6fb%dl$@y_sz&$%m#0_o8x(_imaof29y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -214,9 +212,10 @@ SIMPLE_JWT = {
     "TOKEN_TYPE_CLAIM": "token_type",
 }
 
-ALLOWED_HOSTS= os.environ.get("ALLOWED_HOSTS", "").split(",")
-if ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ALLOWED_HOSTS.split(",")
+# Allowed Hosts
+ALLOWED_HOSTS_ENV = os.environ.get("ALLOWED_HOSTS", "")
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_ENV.split(",") if host.strip()]
 else:
     ALLOWED_HOSTS = []
 
