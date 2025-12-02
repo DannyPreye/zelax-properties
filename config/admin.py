@@ -40,3 +40,4 @@ admin.site.site_header = "Property Rental Platform Admin"
 admin.site.site_title = "Property Rental Admin"
 admin.site.index_title = "Dashboard"
 
+

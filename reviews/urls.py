@@ -13,3 +13,4 @@ urlpatterns = [
     path("users/<int:user_id>/", UserReviewsView.as_view(), name="user-reviews"),
 ]
 
+

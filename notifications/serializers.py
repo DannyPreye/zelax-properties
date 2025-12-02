@@ -33,3 +33,4 @@ class NotificationPreferenceSerializer(serializers.ModelSerializer):
             "property_notifications",
         ]
 
+

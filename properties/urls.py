@@ -55,3 +55,4 @@ urlpatterns = [
     path("search/", PropertyViewSet.as_view({"get": "list"}), name="property-search"),
 ]
 
+

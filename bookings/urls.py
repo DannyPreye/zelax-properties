@@ -12,3 +12,4 @@ urlpatterns = [
     path("calculate-price/", PriceCalculationView.as_view(), name="calculate-price"),
 ]
 
+

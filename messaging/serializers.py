@@ -78,3 +78,4 @@ class MessageThreadCreateSerializer(serializers.ModelSerializer):
         thread.participants.add(user, participant_id)
         return thread
 
+

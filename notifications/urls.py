@@ -12,3 +12,4 @@ urlpatterns = [
     path("preferences/", NotificationPreferenceView.as_view(), name="preferences"),
 ]
 
+
