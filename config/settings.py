@@ -235,8 +235,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "https://zelax-properties.fly.dev",
     "https://zelax-properties-23443.fly.dev",
-    *ALLOWED_HOSTS,
-
 ]
 
 CORS_ALLOW_CREDENTIALS = True
