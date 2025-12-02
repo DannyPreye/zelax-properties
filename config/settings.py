@@ -214,6 +214,12 @@ SIMPLE_JWT = {
     "TOKEN_TYPE_CLAIM": "token_type",
 }
 
+ALLOWED_HOSTS= os.environ.get("ALLOWED_HOSTS", "").split(",")
+if ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ALLOWED_HOSTS.split(",")
+else:
+    ALLOWED_HOSTS = []
+
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -221,6 +227,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
     "https://zelax-properties.fly.dev",
+    *ALLOWED_HOSTS,
+
 ]
 
 CORS_ALLOW_CREDENTIALS = True
