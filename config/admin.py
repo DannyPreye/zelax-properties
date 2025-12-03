@@ -41,3 +41,5 @@ admin.site.site_title = "Property Rental Admin"
 admin.site.index_title = "Dashboard"
 
 
+
+

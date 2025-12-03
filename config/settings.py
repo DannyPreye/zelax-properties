@@ -212,31 +212,11 @@ SIMPLE_JWT = {
     "TOKEN_TYPE_CLAIM": "token_type",
 }
 
-# Allowed Hosts
-ALLOWED_HOSTS_ENV = os.environ.get("ALLOWED_HOSTS", "")
-if ALLOWED_HOSTS_ENV:
-    ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_ENV.split(",") if host.strip()]
-else:
-    ALLOWED_HOSTS = []
+# Allowed Hosts - Allow all hosts
+ALLOWED_HOSTS = ["*"]
 
-# Add Fly.dev hosts to ALLOWED_HOSTS
-FLY_HOSTS = [
-    "zelax-properties.fly.dev",
-    "zelax-properties-23443.fly.dev",
-]
-ALLOWED_HOSTS.extend(FLY_HOSTS)
-ALLOWED_HOSTS = list(set(ALLOWED_HOSTS))  # Remove duplicates
-
-# CORS Settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
-    "https://zelax-properties.fly.dev",
-    "https://zelax-properties-23443.fly.dev",
-]
-
+# CORS Settings - Allow all origins
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 # Cloudinary Settings

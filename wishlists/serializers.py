@@ -41,3 +41,5 @@ class WishlistCreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+
+
