@@ -36,3 +36,4 @@ class NotificationPreferenceSerializer(serializers.ModelSerializer):
 
 
 
+

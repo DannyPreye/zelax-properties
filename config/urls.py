@@ -43,7 +43,6 @@ urlpatterns = [
     path("api/auth/", include(("accounts.urls", "accounts"), namespace="auth")),
     path("api/users/", include(("accounts.urls", "accounts"), namespace="users")),
     path("api/properties/", include("properties.urls")),
-    path("api/properties/", include("properties.urls")),
     path("api/bookings/", include("bookings.urls")),
     path("api/reviews/", include("reviews.urls")),
     path("api/messages/", include("messaging.urls")),

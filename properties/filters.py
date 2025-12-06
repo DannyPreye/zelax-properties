@@ -54,7 +54,7 @@ class PropertyFilter(django_filters.FilterSet):
     # Geographic search
     latitude = django_filters.NumberFilter(method="filter_nearby")
     longitude = django_filters.NumberFilter(method="filter_nearby")
-    radius_km = django_filters.NumberFilter(method="filter_nearby", default=10)
+    radius_km = django_filters.NumberFilter(method="filter_nearby", required=False)
 
     # Search
     search = django_filters.CharFilter(method="filter_search")

@@ -44,7 +44,11 @@ class PropertyReviewsView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        property_id = self.kwargs["property_id"]
+        if getattr(self, "swagger_fake_view", False):
+            return Review.objects.none()
+        property_id = self.kwargs.get("property_id")
+        if not property_id:
+            return Review.objects.none()
         return Review.objects.filter(
             property_id=property_id,
             review_type=Review.ReviewType.GUEST_TO_PROPERTY,
@@ -91,7 +95,11 @@ class UserReviewsView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        user_id = self.kwargs["user_id"]
+        if getattr(self, "swagger_fake_view", False):
+            return Review.objects.none()
+        user_id = self.kwargs.get("user_id")
+        if not user_id:
+            return Review.objects.none()
         return Review.objects.filter(
             reviewee_id=user_id, is_visible=True
         ).select_related("reviewer", "reviewee", "property")

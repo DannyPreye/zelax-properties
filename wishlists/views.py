@@ -21,6 +21,8 @@ class WishlistViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Get user's wishlists or public wishlists"""
+        if getattr(self, "swagger_fake_view", False):
+            return Wishlist.objects.none()
         user = self.request.user
         if self.action == "list":
             # Users see their own wishlists and public wishlists

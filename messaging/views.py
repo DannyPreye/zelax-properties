@@ -19,6 +19,8 @@ class MessageThreadViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Get threads where user is a participant"""
+        if getattr(self, "swagger_fake_view", False):
+            return MessageThread.objects.none()
         return MessageThread.objects.filter(
             participants=self.request.user
         ).prefetch_related("participants", "messages").distinct()
@@ -78,6 +80,8 @@ class MessageViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Message.objects.none()
         thread_id = self.kwargs.get("thread_id")
         return Message.objects.filter(thread_id=thread_id).select_related("sender")
 

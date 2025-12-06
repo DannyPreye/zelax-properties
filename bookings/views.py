@@ -21,6 +21,8 @@ class BookingViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Filter bookings based on user role"""
+        if getattr(self, "swagger_fake_view", False):
+            return Booking.objects.none()
         user = self.request.user
         if user.is_host:
             # Hosts see bookings for their properties

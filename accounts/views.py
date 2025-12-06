@@ -71,6 +71,10 @@ class EmailVerificationView(generics.GenericAPIView):
 
     permission_classes = [IsAuthenticated]
 
+    def get_serializer_class(self):
+        """Override to return None since this view doesn't use a serializer"""
+        return None
+
     def post(self, request):
         # In a real implementation, you would verify the token sent via email
         # For now, we'll just mark it as verified

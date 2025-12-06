@@ -24,6 +24,8 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         """Get user's payments"""
+        if getattr(self, "swagger_fake_view", False):
+            return Payment.objects.none()
         return Payment.objects.filter(user=self.request.user).select_related(
             "booking", "user"
         )
@@ -151,6 +153,8 @@ class PayoutViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         """Get host's payouts"""
+        if getattr(self, "swagger_fake_view", False):
+            return Payout.objects.none()
         return Payout.objects.filter(host=self.request.user)
 
     @action(
