@@ -107,6 +107,7 @@ class PropertyCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Property
         fields = [
+            "id",
             "title",
             "description",
             "property_type",
@@ -129,6 +130,7 @@ class PropertyCreateUpdateSerializer(serializers.ModelSerializer):
             "min_stay",
             "max_stay",
         ]
+        read_only_fields = ["id"]
 
     def create(self, validated_data):
         validated_data["host"] = self.context["request"].user
