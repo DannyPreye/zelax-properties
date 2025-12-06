@@ -2,6 +2,7 @@ from rest_framework import viewsets, status, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.parsers import MultiPartParser, FormParser
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django.shortcuts import get_object_or_404
@@ -79,9 +80,10 @@ class PropertyViewSet(viewsets.ModelViewSet):
         methods=["post"],
         permission_classes=[IsAuthenticated, IsHost],
         url_path="photos",
+        parser_classes=[MultiPartParser, FormParser],
     )
     def upload_photos(self, request, pk=None):
-        """Upload photos for a property"""
+        """Upload photos for a property (multipart/form-data)"""
         property_obj = self.get_object()
         # Check ownership
         if property_obj.host != request.user:
@@ -103,6 +105,7 @@ class PropertyPhotoViewSet(viewsets.ModelViewSet):
     queryset = PropertyPhoto.objects.all()
     serializer_class = PropertyPhotoSerializer
     permission_classes = [IsAuthenticated, IsHost]
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_queryset(self):
         property_id = self.kwargs.get("property_pk")
